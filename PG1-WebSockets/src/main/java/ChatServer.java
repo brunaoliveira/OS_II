@@ -34,18 +34,23 @@ public class ChatServer {
 // isso, remova a sessão indicada da estrutura de dados que você definiu previamente. 
     @onClose
     public void closeSession(Session sessionClosing) {
-        
+
         session.remove(sessionClosing);
         LOGGER.info("The session " + sessionClosing.getId() + " was closed.");
     }
 
-//     -Método anotado como @onMessage: Método que é chamado para lidar com o
-// recebimento de mensagens WebSocket. A princípio, implemente um método que recebe
-// mensagens em formato de string e replique-as para os outros peers conectados. Essa
-// funcionalidade pode ser implementada através do acesso a estrutura definida para abrigar
-// as sessões estabelecidas e a invocação do método getBasicRemote() para cada uma
-// delas, utilizando o método sendText() para encaminhar as mensagens. Ex:
-// session.getBasicRemote().sendText(msg);
+//     -Método anotado como @onMessage: Método que é chamado para lidar com o recebimento de mensagens WebSocket. 
+// A princípio, implemente um método que recebe mensagens em formato de string e replique-as para os outros peers conectados. 
+// Essa funcionalidade pode ser implementada através do acesso a estrutura definida para abrigar
+// as sessões estabelecidas e a invocação do método getBasicRemote() para cada uma delas, 
+// utilizando o método sendText() para encaminhar as mensagens. Ex: session.getBasicRemote().sendText(msg);
     @onMessage
+    public void sendMessage(String msg) {
 
+        // algo assim- for session in openSessions: session.getBasicRemote().sendText(msg)
+        for (session : openSessions) {
+            session.getBasicRemote().sendText(msg);
+        }
+    }
+    
 }
