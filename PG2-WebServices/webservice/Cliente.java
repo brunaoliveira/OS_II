@@ -10,6 +10,8 @@ import com.sun.jersey.api.client.config.DefaultClientConfig;
 public class Cliente {
      
     public static void main(String[] args) {
+        int a = 2;
+        int b = 2;
         ClientConfig config = new DefaultClientConfig();
         Client cliente = Client.create(config);
         WebResource servico = cliente.resource("http://localhost:9000/calculadora");
