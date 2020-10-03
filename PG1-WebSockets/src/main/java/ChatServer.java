@@ -1,27 +1,26 @@
 import javax.websocket.server.ServerEndpoint;
 import javax.websocket.Session;
-import java.util.logging.Logger;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
+import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.io.*;
 
 @ServerEndpoint("/chat")
 public class ChatServer {
-
-    private static final Logger LOGGER = Logger.getLogger();
-    private static List<Session> openSessions = new ArrayList<Session>(); // open sessions
+    private static final Logger LOGGER = Logger.getLogger(ChatServer.class.getName());
+    private static ArrayList<Session> openSessions = new ArrayList<Session>(); // open sessions
     // ou implementar com set? assim não repete identificador
     // Set<Session> openSessions = new HashSet<Session>();
 
-
-//     Método anotado como @onOpen: Método que manipula o recebimento de conexões dos
+//    -Método anotado como @onOpen: Método que manipula o recebimento de conexões dos
 // peers. Recebe como parâmetro um objeto Session e o armazena para que os outros
 // métodos possam ter acesso. Toda vez que uma nova conexão for estabelecida, crie um
 // novo registro de log indicando o identificador único da sessão atual, utilizando o método
 // getId() para isso. 
-    @onOpen
+    @OnOpen
     public void openSession(Session newSession) {
-
         openSessions.add(newSession);
         // se adicionou ao set a nova sessão 
         LOGGER.info("The session " + newSession.getId() + " was created.");
@@ -32,10 +31,9 @@ public class ChatServer {
 // WebSocket está sendo fechada. Receba como parâmetro um objeto Session e crie um
 // novo registro de log informando que a conexão identificada com o ID será fechada. Após
 // isso, remova a sessão indicada da estrutura de dados que você definiu previamente. 
-    @onClose
+    @OnClose
     public void closeSession(Session sessionClosing) {
-
-        session.remove(sessionClosing);
+        openSessions.remove(sessionClosing);
         LOGGER.info("The session " + sessionClosing.getId() + " was closed.");
     }
 
@@ -44,11 +42,10 @@ public class ChatServer {
 // Essa funcionalidade pode ser implementada através do acesso a estrutura definida para abrigar
 // as sessões estabelecidas e a invocação do método getBasicRemote() para cada uma delas, 
 // utilizando o método sendText() para encaminhar as mensagens. Ex: session.getBasicRemote().sendText(msg);
-    @onMessage
-    public void sendMessage(String msg) {
-
+    @OnMessage
+    public void sendMessage(String msg) throws IOException {
         // algo assim- for session in openSessions: session.getBasicRemote().sendText(msg)
-        for (session : openSessions) {
+        for (Session session : openSessions) {
             session.getBasicRemote().sendText(msg);
         }
     }
