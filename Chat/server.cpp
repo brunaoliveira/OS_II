@@ -7,11 +7,6 @@
 #include <string.h>
 #include <string>
 
-#define AF_INET 2
-#define SOCK_STREAM 1
-#define SOMAXCONN 128
-#define NI_MAXHOST 1025
-#define NI_MAXSERV 32
 #define MAX_BUFFER 4096
 
 using namespace std;
