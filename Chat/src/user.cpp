@@ -1,17 +1,19 @@
 #include "user.h"
+#include <string>
+
 
 User::User(std::string userId) {
 
 }
 
-User::addUser(User* user) {
+void User::addUser(User* user) {
 
 }
 
-User::deleteUser(User* user) {
+void User::deleteUser(User* user) {
 
 }
 
-User::showUsers() {
+void User::showUsers() {
 
 }
