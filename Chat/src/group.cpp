@@ -2,16 +2,20 @@
 
 Group::Group(std::string name)
 {
+    this->name = name;
 }
 
 void Group::joinUser(User user)
 {
+    this->users.push_back(user);
 }
 
-void Group::leftUser(std::string username)
+void Group::leftUser(User user)
 {
+    this->users.remove(user);
 }
 
-std::list<std::string> Group::getUsers()
+std::list<User> Group::getUsers()
 {
+    return this->users;
 }
