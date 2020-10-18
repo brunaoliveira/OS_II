@@ -1,10 +1,12 @@
 #include "user.h"
 #include "constants.h"
+#include "group.h"
 #include <string>
 
 
 User::User(std::string userId) {
     this->userId = userId;
+    this->userConections = 0;
 }
 
 void User::addUser(User* user) {
@@ -20,8 +22,10 @@ void User::deleteUser(User* user) {
 
 int User::joinGroup(Group* group) {
     // checar o numero de conexões para esse usuário
-    if (thisUser.conections < MAX_USER_CONECTIONS) {
+    if (this->userConections < MAX_USER_CONECTIONS) {
         // adiciona ao grupo
+        
+        ++this->userConections; // incrementa conexões do usuario
         // tem que ver se ja estava no grupo
         // e o quais consequencias
 
