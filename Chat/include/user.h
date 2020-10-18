@@ -5,7 +5,8 @@
 class User {
     // atributos
     std::string userId;
-
+    int userConections;
+    
     // construtor
     User(std::string userId);
 
@@ -13,6 +14,7 @@ class User {
     void addUser(User* user);
     void deleteUser(User* user);
     void showUsers();
+    int joinGroup(Group* group);
 
 };
 
