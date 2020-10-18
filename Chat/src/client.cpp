@@ -1,14 +1,6 @@
-#include <iostream>
-#include <sys/types.h>
-#include <unistd.h>
-#include <sys/socket.h>
-#include <netdb.h>
-#include <arpa/inet.h>
-#include <string.h>
-#include <string>
+#include "../include/client.h"
+#include "../include/constants.h"
 
-#define MAX_BUFFER 4096
-#define PORT 54000
 
 using namespace std;
 
