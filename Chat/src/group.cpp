@@ -1,4 +1,5 @@
 #include "../include/group.h"
+#include "../include/user.h"
 
 Group::Group(std::string name)
 {

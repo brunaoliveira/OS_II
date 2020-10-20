@@ -5,8 +5,9 @@
 #include <string>
 #include <list>
 
-class Group
-{
+class User;
+
+class Group {
 
 public:
     std::string name;      //group name
